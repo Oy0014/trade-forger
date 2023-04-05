@@ -1,0 +1,70 @@
+<li ng-repeat="userAsset in offer.userAssets" class="list-item item-card trade-item-card ng-scope">
+	<div trade-item-card="">
+		<div class="item-card-container">
+			<div class="item-card-link">
+				<div class="item-card-thumb-container" ng-click="root.onItemCardClick(userAsset)">
+					<span
+						class="limited-icon-container ng-isolate-scope"
+						uib-tooltip="#29,917/38,654"
+						tooltip-placement="right"
+						tooltip-append-to-body="true"
+						limited-icon=""
+						layout-options="userAsset.layoutOptions"
+					>
+						<span class="icon-shop-limited" ng-hide="layoutOptions.isIconDisabled"></span>
+						<span class="limited-number-container" ng-show="layoutOptions.isUnique">
+							<span class="font-caption-header">#</span>
+							<span
+								class="font-caption-header text-subheader limited-number ng-binding"
+								ng-show="layoutOptions.isLimitedNumberShown"
+								ng-bind="layoutOptions.limitedNumber"
+								>{{ serial }}</span
+							>
+						</span>
+					</span>
+					<thumbnail-2d
+						thumbnail-type="thumbnailTypes.assetThumbnail"
+						thumbnail-target-id="userAsset.assetId"
+						class="ng-isolate-scope"
+					>
+						<span
+							ng-class="$ctrl.getCssClasses()"
+							class="thumbnail-2d-container"
+							thumbnail-type="Asset"
+						>
+							<!-- ngIf: $ctrl.thumbnailUrl && !$ctrl.isLazyLoadingEnabled() -->
+							<img
+								ng-if="$ctrl.thumbnailUrl &amp;&amp; !$ctrl.isLazyLoadingEnabled()"
+								ng-src="{{ image_url }}"
+								thumbnail-error="$ctrl.setThumbnailLoadFailed"
+								ng-class="{'loading': $ctrl.thumbnailUrl &amp;&amp; !isLoaded }"
+								image-load=""
+								alt=""
+								title=""
+								class="ng-scope ng-isolate-scope"
+								src="{{ image_url }}"
+							/>
+							<!-- end ngIf: $ctrl.thumbnailUrl && !$ctrl.isLazyLoadingEnabled() -->
+							<!-- ngIf: $ctrl.thumbnailUrl && $ctrl.isLazyLoadingEnabled() -->
+						</span>
+					</thumbnail-2d>
+				</div>
+			</div>
+			<div class="item-card-caption">
+				<!-- ngIf: root.isItemUnavailable(userAsset) -->
+				<a>
+					<div class="item-card-name-link">
+						<div class="item-card-name ng-binding">{{ name }}</div>
+					</div>
+				</a>
+				<div
+					ng-class="{ 'invisible': !userAsset.recentAveragePrice }"
+					class="text-overflow item-card-price"
+				>
+					<span class="icon icon-robux-16x16"></span>
+					<span class="text-robux ng-binding">{{ price }}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</li>
