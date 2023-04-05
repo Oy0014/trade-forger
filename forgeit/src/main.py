@@ -14,8 +14,12 @@ def index_get():
 		victim_username = request.form.get('uname').strip()
 	)
 
-	return forger.forge_trade_page()
+	try:
+		return forger.forge_trade_page()
+	except Exception as _:
+		return render_template("userFacing/index.html")
 	
 
 if __name__ == "__main__":
 	app.run(port = 3000, debug = True)
+	# app.run(host="0.0.0.0") # for replit 
